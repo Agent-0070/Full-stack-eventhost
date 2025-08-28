@@ -92,7 +92,9 @@ const URI = process.env.MONGODB_URI || process.env.MONGO_URI || "mongodb://local
 
 connectDB(URI).then(()=>{
   httpServer.listen(PORT, ()=> {
-    console.log(`✅ API running at http://localhost:${PORT}`);
+    const publicUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+    console.log(`✅ API running at ${publicUrl}`);
     console.log(`🔌 Socket.IO server ready for real-time notifications`);
+    console.log(`==> Available at your primary URL https://imhost-backend.onrender.com <==`);
   });
 });
